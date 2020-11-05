@@ -2,18 +2,19 @@ import * as React from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './src/screens/HomeScreen';
-import DetailScreen from './src/screens/DetailScreen';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import HomeStackScreen from './src/screens/HomeScreen';
+import DetailStackScreen from './src/screens/DetailScreen';
 
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={screenStyles}>
-        <Stack.Screen name="Home" component={HomeScreen} options={homeScreenStyles} />
-        <Stack.Screen name="Details" component={DetailScreen} />
-      </Stack.Navigator>
+      <Drawer.Navigator screenOptions={screenStyles} drawerPosition='right'>
+        <Drawer.Screen name="Home" component={HomeStackScreen} />
+        <Drawer.Screen name="Details" component={DetailStackScreen} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
@@ -26,10 +27,6 @@ const screenStyles = {
   headerTitleStyle: {
     fontWeight: 'bold'
   },
-};
-
-const homeScreenStyles = {
-  title: 'Overview'
 };
 
 export default App;
