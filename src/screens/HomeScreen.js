@@ -29,7 +29,7 @@ function HomeStackScreen({ navigation}) {
         component={HomeScreen}
         options={{
           headerRight: () => (
-            <Icon.Button name='menu' size={20} backgroundColor='#009387' onPress={() => navigation.toggleDrawer()}></Icon.Button>
+            <Icon.Button name='menu' size={20} backgroundColor='#ff7474' onPress={() => navigation.toggleDrawer()}></Icon.Button>
           )
         }} />
     </Stack.Navigator>
@@ -38,7 +38,7 @@ function HomeStackScreen({ navigation}) {
 
 const screenStyles = {
   headerStyle: {
-    backgroundColor: '#009387'
+    backgroundColor: '#ff7474'
   },
   headerTintColor: '#fff',
   headerTitleStyle: {
