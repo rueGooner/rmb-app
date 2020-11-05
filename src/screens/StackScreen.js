@@ -8,11 +8,15 @@ import Icon from 'react-native-vector-icons/Feather';
 import HomeScreen from './HomeScreen';
 import ProfileScreen from './ProfileScreen';
 import SearchScreen from './SearchScreen';
+import SettingsScreen from './SettingsScreen';
 
 import { createStackNavigator } from '@react-navigation/stack';
+import NotificationsScreen from './NotificationsScreen';
 
 const HomeStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
+const SettingStack = createStackNavigator();
+
 const BottomTab = createMaterialBottomTabNavigator();
 
 function HomeStackScreen({ navigation}) {
@@ -25,9 +29,9 @@ function HomeStackScreen({ navigation}) {
           headerRight: () => (
             <Icon.Button
               name='menu'
-              color='#00aaff'
+              color='#fff'
               size={20}
-              backgroundColor='#3D423C'
+              backgroundColor='#5CACC4'
               onPress={
                 () => navigation.toggleDrawer()
               }
@@ -48,9 +52,9 @@ function ProfileStackScreen({ navigation }) {
           headerRight: () => (
             <Icon.Button
               name='menu'
-              color='#00aaff'
+              color='#fff'
               size={20}
-              backgroundColor='#3D423C'
+              backgroundColor='#5CACC4'
               onPress={
                 () => navigation.toggleDrawer()
               }
@@ -71,9 +75,9 @@ function SearchStackScreen({ navigation }) {
           headerRight: () => (
             <Icon.Button
               name='menu'
-              color='#00aaff'
+              color='#fff'
               size={20}
-              backgroundColor='#3D423C'
+              backgroundColor='#5CACC4'
               onPress={
                 () => navigation.toggleDrawer()
               }
@@ -84,35 +88,35 @@ function SearchStackScreen({ navigation }) {
   )
 }
 
-function ReviewStackScreen({ navigation }) {
+function SettingsStackScreen({ navigation }) {
   return (
-    <ProfileStack.Navigator screenOptions={screenStyles}>
-      <ProfileStack.Screen
-        name="Search"
-        component={ReviewScreen}
+    <SettingStack.Navigator screenOptions={screenStyles}>
+      <SettingStack.Screen
+        name="Settings"
+        component={SettingsScreen}
         options={{
-          headerTintColor: '#ffaa00',
+          headerTintColor: '#fff',
           headerRight: () => (
             <Icon.Button
               name='menu'
-              color='#00aaff'
+              color='#fff'
               size={20}
-              backgroundColor='#3D423C'
+              backgroundColor='#5CACC4'
               onPress={
                 () => navigation.toggleDrawer()
               }
             />
           )
         }} />
-    </ProfileStack.Navigator>
+    </SettingStack.Navigator>
   )
 }
 function MainTabScreen() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      activeColor="#00aaff"
-      barStyle={{ backgroundColor: '#3D423C', color: '#00aaff' }}>
+      activeColor="#fff"
+      barStyle={{ backgroundColor: '#5CACC4', color: '#fff' }}>
       <BottomTab.Screen
         name="Home"
         component={HomeStackScreen}
@@ -143,15 +147,25 @@ function MainTabScreen() {
           ),
         }}
       />
+      <BottomTab.Screen
+        name="Settings"
+        component={SettingsStackScreen}
+        options={{
+          tabBarLabel: 'Settings',
+          tabBarIcon: ({ color }) => (
+            <Icon name="settings" color={color} size={20} />
+          ),
+        }}
+      />
     </BottomTab.Navigator>
   )
 }
 
 const screenStyles = {
   headerStyle: {
-    backgroundColor: '#3D423C'
+    backgroundColor: '#5CACC4'
   },
-  headerTintColor: '#00aaff',
+  headerTintColor: '#fff',
   headerTitleStyle: {
     fontWeight: 'bold'
   },
@@ -159,7 +173,7 @@ const screenStyles = {
 
 const styles = StyleSheet.create({
   bottomTab: {
-    backgroundColor: '#3D423C',
+    backgroundColor: '#5CACC4',
     alignItems: 'center',
     justifyContent: 'center',
   },

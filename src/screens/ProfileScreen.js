@@ -9,12 +9,27 @@ function ProfileScreen({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <StatusBar style="auto" />
       <Text>Profile</Text>
-      <Button
-        title="Profile"
-        onPress={() => navigation.navigate('Home')}
-      />
+      <View style={styles.button}>
+        <Button
+          title="Home"
+          onPress={() => navigation.navigate('Home')}
+        />
+      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    width: '90%',
+    marginHorizontal: 10
+  },
+});
 
 export default ProfileScreen;
