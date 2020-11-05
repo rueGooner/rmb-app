@@ -5,11 +5,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Icon from 'react-native-vector-icons/Feather';
 
-function HomeScreen({ navigation }) {
+function ReviewScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text>Home Screen</Text>
+      <Text>Reviews Screen</Text>
       <View style={styles.button}>
         <Button
           title="Profile"
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default ReviewScreen;
