@@ -1,35 +1,26 @@
 import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, View, Text, StyleSheet } from 'react-native';
+import { Button, View, Text } from 'react-native';
+import GlobalStyles from '../constants/GlobalStyles';
+
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Icon from 'react-native-vector-icons/Feather';
 
 function HomeScreen({ navigation }) {
   return (
-    <View style={styles.container}>
+    <View style={GlobalStyles.container}>
       <StatusBar style="auto" />
       <Text>Home Screen</Text>
-      <View style={styles.button}>
+      <View style={GlobalStyles.button}>
         <Button
           title="Profile"
+          color={GlobalStyles.primaryButton.backgroundColor}
           onPress={() => navigation.navigate('Profile')}
         />
       </View>
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    width: '90%',
-    marginHorizontal: 10
-  },
-});
 
 export default HomeScreen;
