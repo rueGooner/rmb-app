@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, View, Text } from 'react-native';
 import GlobalStyles from '../constants/GlobalStyles';
@@ -10,9 +10,9 @@ function RegisterScreen({ navigation }) {
       <Text>Register Screen</Text>
       <View style={GlobalStyles.button}>
         <Button
-          title="Login"
+          title="Home"
           color={GlobalStyles.primaryButton.backgroundColor}
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.navigate('Home')}
         />
       </View>
     </View>

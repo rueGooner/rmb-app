@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -9,11 +9,13 @@ import RegisterScreen from './RegisterScreen';
 const AuthStack = createStackNavigator();
 
 function AuthStackScreen({ navigation }) {
-  <AuthStack.Navigator headerMode='none'>
-    <AuthStack.Screen name="SplashScreen" component={SplashScreen}></AuthStack.Screen>
-    <AuthStack.Screen name="Login" component={LoginScreen}></AuthStack.Screen>
-    <AuthStack.Screen name="Register" comonent={RegisterScreen}></AuthStack.Screen>
-  </AuthStack.Navigator>
+  return (
+    <AuthStack.Navigator headerMode='none'>
+      <AuthStack.Screen name="SplashScreen" component={SplashScreen}></AuthStack.Screen>
+      <AuthStack.Screen name="LoginScreen" component={LoginScreen}></AuthStack.Screen>
+      <AuthStack.Screen name="RegisterScreen" component={RegisterScreen}></AuthStack.Screen>
+    </AuthStack.Navigator>
+  )
 }
 
 export default AuthStackScreen;
