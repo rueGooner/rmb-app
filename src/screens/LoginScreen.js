@@ -1,46 +1,127 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, View, Text, TextInput, TouchableOpacity, Dimensions, Platform } from 'react-native';
+import {
+  Button,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Dimensions,
+  Platform,
+} from 'react-native';
 
-import GlobalStyles, { mainTheme } from '../constants/GlobalStyles';
+import GlobalStyles, { mainTheme, gradients } from '../constants/GlobalStyles';
 
 import * as Animatable from 'react-native-animatable';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 
 function LoginScreen({ navigation }) {
+  const [data, setData] = useState({
+    emai: '',
+    password: '',
+    inputChange: false,
+    secureTextEntry: true,
+  });
+
+  const emailInputChange = (value) => {
+    if (value.length !== 0) {
+      setData({
+        ...data,
+        email: value,
+        inputChange: true,
+      });
+    } else {
+      setData({
+        ...data,
+        email: value,
+        inputChange: false,
+      });
+    }
+  };
+
+  const passwordVisibility = () => {
+    setData({
+      ...data,
+      secureTextEntry: !data.secureTextEntry
+    })
+  };
+
   return (
     <View style={GlobalStyles.container}>
-      <StatusBar style="auto" backgroundColor={mainTheme.primary}/>
+      <StatusBar style="light" backgroundColor={mainTheme.primary} />
       <Text>Login Screen</Text>
       <View style={GlobalStyles.header}>
         <View>
-          <Text style={GlobalStyles.title}>Sign in</Text>
+          <Text style={GlobalStyles.title}>Login</Text>
         </View>
       </View>
-      <View style={GlobalStyles.footer}>
+      <Animatable.View animation="fadeInUpBig" style={GlobalStyles.footer}>
         <Text style={GlobalStyles.label}>Email</Text>
         <View style={GlobalStyles.action}>
-          <Icon name="user" size={18} color={mainTheme.secondary} style={{ marginBottom: 10 }} />
+          <Icon
+            name="at-sign"
+            size={18}
+            color={mainTheme.secondary}
+            style={{ marginBottom: 10 }}
+          />
           <TextInput
-            autoCapitalize='none'
+            onChangeText={(value) => emailInputChange(value)}
+            autoCapitalize="none"
             placeholder="you@yourplace.co.uk"
             placeholderTextColor={mainTheme.primary}
-            style={GlobalStyles.textInput} />
-          <Icon name="check-circle" size={18} color={GlobalStyles.errorIcon.color} style={{ marginBottom: 10 }} />
+            style={GlobalStyles.textInput}
+          />
+          {data.inputChange ? (
+            <Animatable.View animation="bounceIn">
+              <Icon
+                name="check-circle"
+                size={18}
+                color={mainTheme.success}
+                style={{ marginBottom: 10 }}
+              />
+            </Animatable.View>
+          ) : null}
         </View>
         <Text style={[GlobalStyles.label, { marginTop: 15 }]}>Password</Text>
         <View style={GlobalStyles.action}>
-          <Icon name="at-sign" size={18} color={mainTheme.secondary} style={{ marginBottom: 10 }} />
+          <Icon
+            name="at-sign"
+            size={18}
+            color={mainTheme.secondary}
+            style={{ marginBottom: 10 }}
+          />
           <TextInput
-            autoCapitalize='none'
-            secureTextEntry={true}
-            placeholder="you@yourplace.co.uk"
+            onChangeText={(value) => passwordInputChange(value)}
+            autoCapitalize="none"
+            secureTextEntry={data.secureTextEntry ? true : false}
+            placeholder="Your Password"
             placeholderTextColor={mainTheme.primary}
-            style={GlobalStyles.textInput} />
-          <Icon name="eye-off" size={18} color={GlobalStyles.errorIcon.color} style={{ marginBottom: 10 }} />
+            style={GlobalStyles.textInput}
+          />
+          <TouchableOpacity onPress={passwordVisibility}>
+            <Icon
+              name={data.secureTextEntry ? 'eye-off' : 'eye'}
+              size={18}
+              color={data.secureTextEntry ? GlobalStyles.errorIcon.color : mainTheme.success}
+              style={{ marginBottom: 10 }}
+            />
+          </TouchableOpacity>
         </View>
-      </View>
+        <View style={{ marginTop: 15 }}>
+          <LinearGradient
+            colors={gradients.primaryButton}
+            style={GlobalStyles.signIn}>
+            <Text style={[GlobalStyles.textSign, { color: mainTheme.white }]}>Login</Text>
+          </LinearGradient>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('RegisterScreen')}
+            style={GlobalStyles.register}
+          >
+            <Text>Register</Text>
+          </TouchableOpacity>
+        </View>
+      </Animatable.View>
     </View>
   );
 }

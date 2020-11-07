@@ -36,6 +36,8 @@ const SplashScreen = ({ navigation }) => {
           GlobalStyles.footer,
           {
             backgroundColor: GlobalStyles.footer.backgroundColor,
+            alignItems: 'center',
+            justifyContent: 'center'
           },
         ]}
         animation="fadeInUpBig"
@@ -45,6 +47,9 @@ const SplashScreen = ({ navigation }) => {
             GlobalStyles.title,
             {
               color: colors.text,
+              alignSelf: 'center',
+              textAlign: 'center',
+              marginVertical: 10
             },
           ]}
         >

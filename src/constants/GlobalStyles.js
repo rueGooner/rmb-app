@@ -6,15 +6,35 @@ export const mainTheme = {
   tertiary: '#f85e00',
   white: '#fff',
   lightBackground: '#FDFDFD',
-  darkBackground: '#404040',
+  darkBackground: '#1A1A1D',
   accent: '#fbe134',
+  lightText: '#FEFEFE',
+  darkText: '#1A1A1D',
+  splashBackground: '#69D2E7',
+  splashBackgroundGradient: '#5FBDD0',
+  success: '#4BB543',
+  error: '#ff0033',
+};
+
+export const gradients = {
+  primaryButton: ['#69D2E7', '#5FBDD0', '#69D2E7'],
+  secondaryButton: ['#1b4965', '#18425B', '#1b4965']
+}
+
+export const darkTheme = {
+  background: '#1A1A1D',
+  primary: '#3500D3',
+  secondary: '#190061',
+  tertiary: '#8EE4AF',
+  accent: '#0C0032',
+  white: '#fff',
+  success: '#5CDB95',
+  error: '#ff0033',
   lightText: '#FEFEFE',
   darkText: '#404040',
   splashBackground: '#69D2E7',
   splashBackgroundGradient: '#5FBDD0',
-  success: '#4BB543',
-  error: '#ff0033'
-};
+}
 
 const { height } = Dimensions.get('screen');
 const height_logo = height * 0.28;
@@ -31,7 +51,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   footer: {
-    flex: 1,
+    flex: 2,
     backgroundColor: mainTheme.white,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -51,7 +71,8 @@ export default StyleSheet.create({
   },
   text: {
     color: 'grey',
-    marginTop: 5
+    marginTop: 5,
+    alignSelf: 'center'
   },
   button: {
     width: '100%',
@@ -63,6 +84,16 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
     flexDirection: 'row'
+  },
+  register: {
+    height: 40,
+    marginTop: 10,
+    borderRadius: 5,
+    borderColor: mainTheme.secondary,
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: mainTheme.secondary
   },
   textSign: {
     color: 'white',
