@@ -1,11 +1,14 @@
 import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 export const mainTheme = {
-  primary: '#5CACC4',
-  secondary: '#1b4965',
-  tertiary: '#f85e00',
+  primary: '#45A29E',
+  primaryVariant: '#34918D',
+  secondary: '#05386B',
+  secondaryVariant: '#053260',
+  tertiary: '#8EE4AF',
+  tertiaryVariant: '#B0ECC7',
   white: '#fff',
-  lightBackground: '#FDFDFD',
+  lightBackground: '#EDF5E1',
   darkBackground: '#1A1A1D',
   accent: '#fbe134',
   lightText: '#FEFEFE',
@@ -14,11 +17,12 @@ export const mainTheme = {
   splashBackgroundGradient: '#5FBDD0',
   success: '#4BB543',
   error: '#ff0033',
+  warning: '#F0A830'
 };
 
 export const gradients = {
-  primaryButton: ['#69D2E7', '#5FBDD0', '#69D2E7'],
-  secondaryButton: ['#1b4965', '#18425B', '#1b4965']
+  primaryButton: [mainTheme.primaryVariant, mainTheme.primary, mainTheme.primaryVariant],
+  secondaryButton: [mainTheme.secondaryVariant, mainTheme.secondary, mainTheme.secondaryVariant]
 }
 
 export const darkTheme = {
