@@ -11,7 +11,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { useTheme } from '@react-navigation/native';
-import GlobalStyles, { mainTheme } from '../constants/GlobalStyles';
+import GlobalStyles, { gradients } from '../constants/GlobalStyles';
 
 const SplashScreen = ({ navigation }) => {
   const { colors } = useTheme();
@@ -59,11 +59,7 @@ const SplashScreen = ({ navigation }) => {
         <View style={GlobalStyles.button}>
           <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
             <LinearGradient
-              colors={[
-                mainTheme.splashBackground,
-                mainTheme.splashBackgroundGradient,
-                mainTheme.splashBackground,
-              ]}
+              colors={gradients.primaryButton}
               style={GlobalStyles.signIn}
             >
               <Text style={GlobalStyles.textSign}>Get Started</Text>

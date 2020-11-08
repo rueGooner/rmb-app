@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
   Button,
@@ -16,13 +16,17 @@ import * as Animatable from 'react-native-animatable';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 
+import { AuthContext } from '../components/Context';
+
 function LoginScreen({ navigation }) {
   const [data, setData] = useState({
-    emai: '',
+    email: '',
     password: '',
     inputChange: false,
     secureTextEntry: true,
   });
+
+  const { handleLogin } = useContext(AuthContext);
 
   const emailInputChange = (value) => {
     if (value.length !== 0) {
@@ -109,11 +113,17 @@ function LoginScreen({ navigation }) {
           </TouchableOpacity>
         </View>
         <View style={{ marginTop: 15 }}>
-          <LinearGradient
-            colors={gradients.primaryButton}
-            style={GlobalStyles.signIn}>
-            <Text style={[GlobalStyles.textSign, { color: mainTheme.white }]}>Login</Text>
-          </LinearGradient>
+          <TouchableOpacity onPress={() => handleLogin({
+            // email: data.email, password: data.password
+            email: 'ruebencee@gmail.com', password: 'password'
+
+          })}>
+            <LinearGradient
+              colors={gradients.primaryButton}
+              style={GlobalStyles.signIn}>
+              <Text style={[GlobalStyles.textSign, { color: mainTheme.white }]}>Login</Text>
+            </LinearGradient>
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.navigate('RegisterScreen')}
             style={GlobalStyles.register}
