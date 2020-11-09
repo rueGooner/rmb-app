@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useReducer } from 'react';
-import { View, ActivityIndicator, Text, Alert } from 'react-native';
-import { backend } from './src/services/api';
+import { View, ActivityIndicator, Text, Alert, AsyncStorage } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainTabScreen from './src/screens/StackScreen';
@@ -35,17 +34,21 @@ function App() {
       case 'LOGOUT':
         return {
           ...previousState,
+          userName: null,
+          userToken: null,
           isLoading: false
         };
       case 'REGISTER':
         return {
           ...previousState,
+          user: user,
+          userToken: action.token,
           isLoading: false
         };
       case 'RETRIEVE_TOKEN':
         return {
           ...previousState,
-          // userToken: action.token,
+          userToken: action.token,
           isLoading: false
         };
     }
@@ -55,24 +58,35 @@ function App() {
 
   const authContext = useMemo(
     () => ({
-      handleLogin: async (userData) => {
+      login: async (authUser) => {
         try {
-          const { data } = await backend.post('/login', userData);
-          dispatch({ type: 'LOGIN', user: data.user, token: data.token})
-          alert(user);
+          await AsyncStorage.setItem('rmb-token', token)
+          dispatch({ type: 'LOGIN', user: authUser.user, token: authUser.token})
         } catch (error) {
           Alert.alert('ERROR', error.response.data.message);
         }
       },
-      handleRegister: () => {},
+      handleRegister: async () => {
+        try {
+          await AsyncStorage.removeItem('rmb-token');
+          dispatch({ type: 'LOGOU' });
+        } catch (error) {
+          Alert.alert('Error');
+        }
+      },
       handleLogout: () => {},
     }),
     []
   );
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatch({ type: 'RETRIEVE_TOKEN', /*token: userToken*/ });
+    setTimeout(async () => {
+      try {
+        const retrievedToken = await AsyncStorage.getItem('rmb-token');
+        dispatch({ type: 'RETRIEVE_TOKEN', token: retrievedToken });
+      } catch (error) {
+        Alert.alert('No token', 'You may need to attempt login again.', [{ text: 'Okay' }]);
+      }
     }, 1000);
   }, []);
 

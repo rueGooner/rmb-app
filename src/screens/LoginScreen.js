@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
+
 import {
   Button,
   View,
@@ -8,6 +9,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Platform,
+  Alert,
 } from 'react-native';
 
 import GlobalStyles, { mainTheme, gradients } from '../constants/GlobalStyles';
@@ -17,6 +19,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { AuthContext } from '../components/Context';
+import { backend } from '../services/api';
 
 function LoginScreen({ navigation }) {
   const [data, setData] = useState({
@@ -26,7 +29,7 @@ function LoginScreen({ navigation }) {
     secureTextEntry: true,
   });
 
-  const { handleLogin } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const emailInputChange = (value) => {
     if (value.length !== 0) {
@@ -50,6 +53,30 @@ function LoginScreen({ navigation }) {
       secureTextEntry: !data.secureTextEntry
     })
   };
+
+  const handleLogin = async ({ email, password }) => {
+    try {
+      const foundUser = await backend.post('/login', { email: email, password: password });
+
+      if (data.email.length === 0 || data.password.length === 0) {
+        Alert.alert('Input Error', 'Email or Password field cannot be empty!', [{
+          text: 'Okay'
+        }]);
+        return;
+      }
+
+      if (!foundUser) {
+        Alert.alert('User not found!', 'Please try logging in again.', [{
+          text: 'Okay'
+        }]);
+        return;
+      }
+
+      login(foundUser);
+    } catch (error) {
+      Alert.alert(error.response.data.message, 'Please try again!', [{ text: 'Okay' }])
+    }
+  }
 
   return (
     <View style={GlobalStyles.container}>
@@ -115,7 +142,7 @@ function LoginScreen({ navigation }) {
         <View style={{ marginTop: 15 }}>
           <TouchableOpacity onPress={() => handleLogin({
             // email: data.email, password: data.password
-            email: 'ruebencee@gmail.com', password: 'password'
+            email: 'ruebenceffe@gmail.com', password: 'pffassword'
 
           })}>
             <LinearGradient
