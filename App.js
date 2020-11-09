@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useMemo, useReducer } from 'react';
-import { View, ActivityIndicator, Text, Alert, AsyncStorage } from 'react-native';
+import {
+  View,
+  ActivityIndicator,
+  Text,
+  Alert,
+  AsyncStorage,
+} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainTabScreen from './src/screens/StackScreen';
@@ -29,27 +35,27 @@ function App() {
           ...previousState,
           user: action.user,
           userToken: action.token,
-          isLoading: false
+          isLoading: false,
         };
       case 'LOGOUT':
         return {
           ...previousState,
           userName: null,
           userToken: null,
-          isLoading: false
+          isLoading: false,
         };
       case 'REGISTER':
         return {
           ...previousState,
           user: user,
           userToken: action.token,
-          isLoading: false
+          isLoading: false,
         };
       case 'RETRIEVE_TOKEN':
         return {
           ...previousState,
           userToken: action.token,
-          isLoading: false
+          isLoading: false,
         };
     }
   };
@@ -60,21 +66,26 @@ function App() {
     () => ({
       login: async (authUser) => {
         try {
-          await AsyncStorage.setItem('rmb-token', token)
-          dispatch({ type: 'LOGIN', user: authUser.user, token: authUser.token})
+          console.log(authUser);
+          await AsyncStorage.setItem('rmb-token', authUser.data.token);
+          dispatch({
+            type: 'LOGIN',
+            user: authUser.data.user,
+            token: authUser.data.token,
+          });
         } catch (error) {
           Alert.alert('ERROR', error.response.data.message);
         }
       },
-      handleRegister: async () => {
+      signOut: async () => {
         try {
           await AsyncStorage.removeItem('rmb-token');
-          dispatch({ type: 'LOGOU' });
+          dispatch({ type: 'LOGOUT' });
         } catch (error) {
           Alert.alert('Error');
         }
       },
-      handleLogout: () => {},
+      handleRegister: () => {},
     }),
     []
   );
@@ -85,7 +96,9 @@ function App() {
         const retrievedToken = await AsyncStorage.getItem('rmb-token');
         dispatch({ type: 'RETRIEVE_TOKEN', token: retrievedToken });
       } catch (error) {
-        Alert.alert('No token', 'You may need to attempt login again.', [{ text: 'Okay' }]);
+        Alert.alert('No token', 'You may need to attempt login again.', [
+          { text: 'Okay' },
+        ]);
       }
     }, 1000);
   }, []);
@@ -116,12 +129,22 @@ function App() {
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-        <AuthStackScreen />
-        {/* <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />} screenOptions={screenStyles} drawerPosition='right'>
-          <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
-          <Drawer.Screen name="Notifications" component={NotificationStackScreen} />
-          <Drawer.Screen name="Reviews" component={ReviewsScreen} />
-        </Drawer.Navigator> */}
+        {loginState.userToken === null ? (
+          <AuthStackScreen />
+        ) : (
+          <Drawer.Navigator
+            drawerContent={(props) => <DrawerContent {...props} />}
+            screenOptions={screenStyles}
+            drawerPosition="right"
+          >
+            <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
+            <Drawer.Screen
+              name="Notifications"
+              component={NotificationStackScreen}
+            />
+            <Drawer.Screen name="Reviews" component={ReviewsScreen} />
+          </Drawer.Navigator>
+        )}
       </NavigationContainer>
     </AuthContext.Provider>
   );

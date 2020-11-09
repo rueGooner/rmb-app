@@ -23,8 +23,8 @@ import { backend } from '../services/api';
 
 function LoginScreen({ navigation }) {
   const [data, setData] = useState({
-    email: '',
-    password: '',
+    email: 'ruebencee@gmail.com',
+    password: 'password',
     inputChange: false,
     secureTextEntry: true,
   });
@@ -50,33 +50,42 @@ function LoginScreen({ navigation }) {
   const passwordVisibility = () => {
     setData({
       ...data,
-      secureTextEntry: !data.secureTextEntry
-    })
+      secureTextEntry: !data.secureTextEntry,
+    });
   };
 
   const handleLogin = async ({ email, password }) => {
     try {
-      const foundUser = await backend.post('/login', { email: email, password: password });
+      const foundUser = await backend.post('/login', {
+        email: email,
+        password: password,
+      });
 
       if (data.email.length === 0 || data.password.length === 0) {
-        Alert.alert('Input Error', 'Email or Password field cannot be empty!', [{
-          text: 'Okay'
-        }]);
+        Alert.alert('Input Error', 'Email or Password field cannot be empty!', [
+          {
+            text: 'Okay',
+          },
+        ]);
         return;
       }
 
       if (!foundUser) {
-        Alert.alert('User not found!', 'Please try logging in again.', [{
-          text: 'Okay'
-        }]);
+        Alert.alert('User not found!', 'Please try logging in again.', [
+          {
+            text: 'Okay',
+          },
+        ]);
         return;
       }
 
       login(foundUser);
     } catch (error) {
-      Alert.alert(error.response.data.message, 'Please try again!', [{ text: 'Okay' }])
+      Alert.alert(error.response.data.message, 'Please try again!', [
+        { text: 'Okay' },
+      ]);
     }
-  }
+  };
 
   return (
     <View style={GlobalStyles.container}>
@@ -134,21 +143,31 @@ function LoginScreen({ navigation }) {
             <Icon
               name={data.secureTextEntry ? 'eye-off' : 'eye'}
               size={18}
-              color={data.secureTextEntry ? GlobalStyles.errorIcon.color : mainTheme.success}
+              color={
+                data.secureTextEntry
+                  ? GlobalStyles.errorIcon.color
+                  : mainTheme.success
+              }
               style={{ marginBottom: 10 }}
             />
           </TouchableOpacity>
         </View>
         <View style={{ marginTop: 15 }}>
-          <TouchableOpacity onPress={() => handleLogin({
-            // email: data.email, password: data.password
-            email: 'ruebenceffe@gmail.com', password: 'pffassword'
-
-          })}>
+          <TouchableOpacity
+            onPress={() =>
+              handleLogin({
+                email: data.email,
+                password: data.password,
+              })
+            }
+          >
             <LinearGradient
               colors={gradients.primaryButton}
-              style={GlobalStyles.signIn}>
-              <Text style={[GlobalStyles.textSign, { color: mainTheme.white }]}>Login</Text>
+              style={GlobalStyles.signIn}
+            >
+              <Text style={[GlobalStyles.textSign, { color: mainTheme.white }]}>
+                Login
+              </Text>
             </LinearGradient>
           </TouchableOpacity>
           <TouchableOpacity
