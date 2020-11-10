@@ -11,6 +11,7 @@ import {
   Platform,
   Alert,
 } from 'react-native';
+import { validate } from 'validate.js';
 
 import GlobalStyles, { mainTheme, gradients } from '../constants/GlobalStyles';
 
@@ -20,6 +21,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import { AuthContext } from '../components/Context';
 import { backend } from '../services/api';
+import constraints from '../constants/constraints';
 
 function LoginScreen({ navigation }) {
   const [data, setData] = useState({
@@ -27,17 +29,28 @@ function LoginScreen({ navigation }) {
     password: 'password',
     inputChange: false,
     secureTextEntry: true,
+    errors: null,
+    invalidPassword: null,
   });
 
   const { login } = useContext(AuthContext);
 
   const emailInputChange = (value) => {
     if (value.length !== 0) {
+      const validationResult = validate(value, constraints);
       setData({
         ...data,
         email: value,
         inputChange: true,
+        errors: validationResult,
       });
+
+      setTimeout(() => {
+        setData({
+          ...data,
+          errors: [],
+        });
+      }, 3000);
     } else {
       setData({
         ...data,
@@ -45,6 +58,27 @@ function LoginScreen({ navigation }) {
         inputChange: false,
       });
     }
+  };
+
+  const passwordInputChange = (value) => {
+    if (value.length < 8) {
+      setData({
+        ...data,
+        password: value,
+        invalidPassword: true,
+      });
+    } else {
+      setData({
+        ...data,
+        password: value,
+        invalidPassword: false,
+      });
+    }
+  };
+
+  const hasErrors = (field) => {
+    const { errors } = data;
+    return (errors && errors[field]) || [];
   };
 
   const passwordVisibility = () => {
@@ -123,6 +157,11 @@ function LoginScreen({ navigation }) {
             </Animatable.View>
           ) : null}
         </View>
+        {hasErrors('emailAddress').map((error, errorIndex) => (
+          <Text key={errorIndex} style={GlobalStyles.errorMessage}>
+            {error}
+          </Text>
+        ))}
         <Text style={[GlobalStyles.label, { marginTop: 15 }]}>Password</Text>
         <View style={GlobalStyles.action}>
           <Icon
@@ -152,6 +191,11 @@ function LoginScreen({ navigation }) {
             />
           </TouchableOpacity>
         </View>
+        {data.invalidPassword ? (
+          <Text style={GlobalStyles.errorMessage}>
+            Password must be at least 8 characters
+          </Text>
+        ) : null}
         <View style={{ marginTop: 15 }}>
           <TouchableOpacity
             onPress={() =>

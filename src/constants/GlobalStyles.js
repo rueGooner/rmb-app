@@ -104,6 +104,11 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginRight: 5
   },
+  errorMessage: {
+    color: mainTheme.error,
+    fontSize: 11,
+    marginVertical: 2
+  },
   statusBar: {
     backgroundColor: mainTheme.primary
   },
