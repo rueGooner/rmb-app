@@ -37,20 +37,11 @@ function LoginScreen({ navigation }) {
 
   const emailInputChange = (value) => {
     if (value.length !== 0) {
-      const validationResult = validate(value, constraints);
       setData({
         ...data,
         email: value,
-        inputChange: true,
-        errors: validationResult,
+        inputChange: true
       });
-
-      setTimeout(() => {
-        setData({
-          ...data,
-          errors: [],
-        });
-      }, 3000);
     } else {
       setData({
         ...data,
@@ -58,6 +49,21 @@ function LoginScreen({ navigation }) {
         inputChange: false,
       });
     }
+  };
+
+  const handleValidation = value => {
+    const validationResult = validate(value, constraints);
+    setData({
+      ...data,
+      errors: validationResult,
+    });
+
+    setTimeout(() => {
+      setData({
+        ...data,
+        errors: [],
+      });
+    }, 3000);
   };
 
   const passwordInputChange = (value) => {
@@ -141,6 +147,7 @@ function LoginScreen({ navigation }) {
           />
           <TextInput
             onChangeText={(value) => emailInputChange(value)}
+            onEndEditing={(event) => handleValidation(event.nativeEvent.text)}
             autoCapitalize="none"
             placeholder="you@yourplace.co.uk"
             placeholderTextColor={mainTheme.primary}

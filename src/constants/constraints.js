@@ -2,7 +2,7 @@ const constraints = {
   emailAddress: {
     presence: {
       allowEmpty: false,
-      message: "^Please enter an email address"
+      message: "^Please enter a valid email address"
     },
     email: {
       message: "^Please enter a valid email address"
