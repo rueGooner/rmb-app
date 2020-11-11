@@ -12,6 +12,7 @@ import SettingsScreen from './SettingsScreen';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import NotificationsScreen from './NotificationsScreen';
+import { mainTheme } from '../constants/GlobalStyles';
 
 const HomeStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
@@ -29,9 +30,9 @@ function HomeStackScreen({ navigation}) {
           headerRight: () => (
             <Icon.Button
               name='menu'
-              color='#fff'
+              color={mainTheme.primary}
               size={20}
-              backgroundColor='#5CACC4'
+              backgroundColor={mainTheme.background}
               onPress={
                 () => navigation.toggleDrawer()
               }
@@ -52,9 +53,9 @@ function ProfileStackScreen({ navigation }) {
           headerRight: () => (
             <Icon.Button
               name='menu'
-              color='#fff'
+              color={mainTheme.primary}
               size={20}
-              backgroundColor='#5CACC4'
+              backgroundColor={mainTheme.background}
               onPress={
                 () => navigation.toggleDrawer()
               }
@@ -75,9 +76,9 @@ function SearchStackScreen({ navigation }) {
           headerRight: () => (
             <Icon.Button
               name='menu'
-              color='#fff'
+              color={mainTheme.primary}
               size={20}
-              backgroundColor='#5CACC4'
+              backgroundColor={mainTheme.background}
               onPress={
                 () => navigation.toggleDrawer()
               }
@@ -99,9 +100,9 @@ function SettingsStackScreen({ navigation }) {
           headerRight: () => (
             <Icon.Button
               name='menu'
-              color='#fff'
+              color={mainTheme.primary}
               size={20}
-              backgroundColor='#5CACC4'
+              backgroundColor={mainTheme.background}
               onPress={
                 () => navigation.toggleDrawer()
               }
@@ -115,8 +116,9 @@ function MainTabScreen() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      activeColor="#fff"
-      barStyle={{ backgroundColor: '#5CACC4', color: '#fff' }}>
+      activeColor={mainTheme.background}
+      inactiveColor={mainTheme.white}
+      barStyle={{ backgroundColor: mainTheme.primary }}>
       <BottomTab.Screen
         name="Home"
         component={HomeStackScreen}
@@ -163,20 +165,12 @@ function MainTabScreen() {
 
 const screenStyles = {
   headerStyle: {
-    backgroundColor: '#5CACC4'
+    backgroundColor: mainTheme.background
   },
-  headerTintColor: '#fff',
+  headerTintColor: mainTheme.primary,
   headerTitleStyle: {
     fontWeight: 'bold'
   },
 };
-
-const styles = StyleSheet.create({
-  bottomTab: {
-    backgroundColor: '#5CACC4',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default MainTabScreen;

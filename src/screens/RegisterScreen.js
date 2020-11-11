@@ -85,14 +85,14 @@ function RegisterScreen({ navigation }) {
           <Icon
             name="at-sign"
             size={16}
-            color={mainTheme.secondary}
+            color={mainTheme.primary}
             style={{ marginBottom: 10 }}
           />
           <TextInput
             onChangeText={(value) => emailInputChange(value)}
             autoCapitalize="none"
             placeholder="you@yourplace.co.uk"
-            placeholderTextColor={mainTheme.primary}
+            placeholderTextColor={mainTheme.white}
             style={GlobalStyles.textInput}
           />
           {data.inputChange ? (
@@ -109,9 +109,9 @@ function RegisterScreen({ navigation }) {
         <Text style={[GlobalStyles.label, { marginTop: 15 }]}>Password</Text>
         <View style={GlobalStyles.action}>
           <Icon
-            name="lock"
+            name="unlock"
             size={16}
-            color={mainTheme.secondary}
+            color={mainTheme.primary}
             style={{ marginBottom: 10 }}
           />
           <TextInput
@@ -119,7 +119,7 @@ function RegisterScreen({ navigation }) {
             autoCapitalize="none"
             secureTextEntry={data.secureTextEntry ? true : false}
             placeholder="Your Password"
-            placeholderTextColor={mainTheme.primary}
+            placeholderTextColor={mainTheme.white}
             style={GlobalStyles.textInput}
           />
           <TouchableOpacity onPress={passwordVisibility}>
@@ -136,7 +136,7 @@ function RegisterScreen({ navigation }) {
           <Icon
             name="lock"
             size={16}
-            color={mainTheme.secondary}
+            color={mainTheme.primary}
             style={{ marginBottom: 10 }}
           />
           <TextInput
@@ -144,7 +144,7 @@ function RegisterScreen({ navigation }) {
             autoCapitalize="none"
             secureTextEntry={data.confirmationSecureTextEntry ? true : false}
             placeholder="Confirm Password"
-            placeholderTextColor={mainTheme.primary}
+            placeholderTextColor={mainTheme.white}
             style={GlobalStyles.textInput}
           />
           <TouchableOpacity onPress={confirmationPasswordVisibility}>
@@ -166,7 +166,7 @@ function RegisterScreen({ navigation }) {
             onPress={() => navigation.navigate('LoginScreen')}
             style={GlobalStyles.register}
           >
-            <Text>Login</Text>
+            <Text style={GlobalStyles.textSign}>Login</Text>
           </TouchableOpacity>
         </View>
       </Animatable.View>

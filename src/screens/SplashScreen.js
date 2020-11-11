@@ -17,14 +17,12 @@ const SplashScreen = ({ navigation }) => {
   const { colors } = useTheme();
 
   return (
-    <View
-      style={GlobalStyles.container}
-      >
+    <View style={GlobalStyles.container}>
       <StatusBar
         backgroundColor={GlobalStyles.container.backgroundColor}
         barStyle="light-content"
       />
-      <View style={GlobalStyles.header}>
+      <View>
         <Animatable.Image
           animation="bounceIn"
           duraton="1500"
@@ -33,17 +31,7 @@ const SplashScreen = ({ navigation }) => {
           resizeMode="stretch"
         />
       </View>
-      <Animatable.View
-        style={[
-          GlobalStyles.footer,
-          {
-            backgroundColor: GlobalStyles.footer.backgroundColor,
-            alignItems: 'center',
-            justifyContent: 'center'
-          },
-        ]}
-        animation="fadeInUpBig"
-      >
+      <Animatable.View animation="fadeInUpBig" style={{ width: '100%', justifyContent: 'center', textAlign: 'center', alignItems: 'center'}}>
         <Text
           style={[
             GlobalStyles.title,
@@ -51,7 +39,7 @@ const SplashScreen = ({ navigation }) => {
               color: mainTheme.primary,
               alignSelf: 'center',
               textAlign: 'center',
-              marginVertical: 10
+              marginVertical: 10,
             },
           ]}
         >

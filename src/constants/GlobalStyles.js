@@ -45,6 +45,8 @@ const height_logo = height * 0.28;
 export default StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     color: mainTheme.lightText,
     backgroundColor: mainTheme.background
   },
@@ -55,7 +57,9 @@ export default StyleSheet.create({
   },
   footer: {
     flex: 2,
-    // backgroundColor: mainTheme.white,
+    width: '95%',
+    borderWidth: 1,
+    borderColor: mainTheme.primary,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingVertical: 50,
