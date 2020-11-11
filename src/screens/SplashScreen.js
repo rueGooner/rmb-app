@@ -8,16 +8,18 @@ import {
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { LinearGradient } from 'expo-linear-gradient';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 import { useTheme } from '@react-navigation/native';
-import GlobalStyles, { gradients } from '../constants/GlobalStyles';
+import GlobalStyles, { gradients, mainTheme } from '../constants/GlobalStyles';
 
 const SplashScreen = ({ navigation }) => {
   const { colors } = useTheme();
 
   return (
-    <View style={GlobalStyles.container}>
+    <View
+      style={GlobalStyles.container}
+      >
       <StatusBar
         backgroundColor={GlobalStyles.container.backgroundColor}
         barStyle="light-content"
@@ -26,7 +28,7 @@ const SplashScreen = ({ navigation }) => {
         <Animatable.Image
           animation="bounceIn"
           duraton="1500"
-          source={require('../../assets/logo.png')}
+          source={require('../../assets/logo-orange.png')}
           style={GlobalStyles.logo}
           resizeMode="stretch"
         />
@@ -46,7 +48,7 @@ const SplashScreen = ({ navigation }) => {
           style={[
             GlobalStyles.title,
             {
-              color: colors.text,
+              color: mainTheme.primary,
               alignSelf: 'center',
               textAlign: 'center',
               marginVertical: 10
@@ -55,15 +57,14 @@ const SplashScreen = ({ navigation }) => {
         >
           The UK's best Barber Directory!
         </Text>
-        <Text style={GlobalStyles.text}>Sign in with account</Text>
         <View style={GlobalStyles.button}>
           <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
             <LinearGradient
               colors={gradients.primaryButton}
               style={GlobalStyles.signIn}
             >
-              <Text style={GlobalStyles.textSign}>Get Started</Text>
-              <Icon name="log-in" color="#fff" size={18} />
+              <Text style={GlobalStyles.textSign}>Login</Text>
+              <Icon name="login" color="#fff" size={18} />
             </LinearGradient>
           </TouchableOpacity>
         </View>

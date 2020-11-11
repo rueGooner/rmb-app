@@ -142,7 +142,7 @@ function LoginScreen({ navigation }) {
           <Icon
             name="at-sign"
             size={18}
-            color={mainTheme.secondary}
+            color={mainTheme.primary}
             style={{ marginBottom: 10 }}
           />
           <TextInput
@@ -150,7 +150,7 @@ function LoginScreen({ navigation }) {
             onEndEditing={(event) => handleValidation(event.nativeEvent.text)}
             autoCapitalize="none"
             placeholder="you@yourplace.co.uk"
-            placeholderTextColor={mainTheme.primary}
+            placeholderTextColor={mainTheme.white}
             style={GlobalStyles.textInput}
           />
           {data.inputChange ? (
@@ -172,9 +172,9 @@ function LoginScreen({ navigation }) {
         <Text style={[GlobalStyles.label, { marginTop: 15 }]}>Password</Text>
         <View style={GlobalStyles.action}>
           <Icon
-            name="at-sign"
+            name="unlock"
             size={18}
-            color={mainTheme.secondary}
+            color={mainTheme.primary}
             style={{ marginBottom: 10 }}
           />
           <TextInput
@@ -182,7 +182,7 @@ function LoginScreen({ navigation }) {
             autoCapitalize="none"
             secureTextEntry={data.secureTextEntry ? true : false}
             placeholder="Your Password"
-            placeholderTextColor={mainTheme.primary}
+            placeholderTextColor={mainTheme.white}
             style={GlobalStyles.textInput}
           />
           <TouchableOpacity onPress={passwordVisibility}>
@@ -225,7 +225,7 @@ function LoginScreen({ navigation }) {
             onPress={() => navigation.navigate('RegisterScreen')}
             style={GlobalStyles.register}
           >
-            <Text>Register</Text>
+            <Text style={GlobalStyles.textSign}>Register</Text>
           </TouchableOpacity>
         </View>
       </Animatable.View>

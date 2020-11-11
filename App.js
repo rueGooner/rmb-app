@@ -23,7 +23,7 @@ function App() {
   // const [isLoading, setIsLoading] = useState(true);
   // const [userToken, setUserToken] = useState(null);
   const initialLoginState = {
-    isLoading: true,
+    isLoading: false,
     user: '',
     userToken: null,
   };
@@ -90,18 +90,18 @@ function App() {
     []
   );
 
-  useEffect(() => {
-    setTimeout(async () => {
-      try {
-        const retrievedToken = await AsyncStorage.getItem('rmb-token');
-        dispatch({ type: 'RETRIEVE_TOKEN', token: retrievedToken });
-      } catch (error) {
-        Alert.alert('No token', 'You may need to attempt login again.', [
-          { text: 'Okay' },
-        ]);
-      }
-    }, 1000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(async () => {
+  //     try {
+  //       const retrievedToken = await AsyncStorage.getItem('rmb-token');
+  //       dispatch({ type: 'RETRIEVE_TOKEN', token: retrievedToken });
+  //     } catch (error) {
+  //       Alert.alert('No token', 'You may need to attempt login again.', [
+  //         { text: 'Okay' },
+  //       ]);
+  //     }
+  //   }, 1000);
+  // }, []);
 
   if (loginState.isLoading) {
     return (

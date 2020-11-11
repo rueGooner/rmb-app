@@ -1,15 +1,13 @@
 import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 export const mainTheme = {
-  primary: '#45A29E',
-  primaryVariant: '#34918D',
-  secondary: '#05386B',
-  secondaryVariant: '#053260',
+  primary: '#FFAA00',
+  primaryVariant: '#FFC44D',
+  secondary: '#00aaff',
+  secondaryVariant: '#4DC4FF',
   tertiary: '#8EE4AF',
   tertiaryVariant: '#B0ECC7',
   white: '#fff',
-  lightBackground: '#EDF5E1',
-  darkBackground: '#1A1A1D',
   accent: '#fbe134',
   lightText: '#FEFEFE',
   darkText: '#1A1A1D',
@@ -17,7 +15,8 @@ export const mainTheme = {
   splashBackgroundGradient: '#5FBDD0',
   success: '#4BB543',
   error: '#ff0033',
-  warning: '#F0A830'
+  warning: '#F0A830',
+  background: '#202020',
 };
 
 export const gradients = {
@@ -26,7 +25,7 @@ export const gradients = {
 }
 
 export const darkTheme = {
-  background: '#1A1A1D',
+  background: '#484848',
   primary: '#3500D3',
   secondary: '#190061',
   tertiary: '#8EE4AF',
@@ -47,7 +46,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     color: mainTheme.lightText,
-    backgroundColor: mainTheme.primary
+    backgroundColor: mainTheme.background
   },
   header: {
     flex: 2,
@@ -56,7 +55,7 @@ export default StyleSheet.create({
   },
   footer: {
     flex: 2,
-    backgroundColor: mainTheme.white,
+    // backgroundColor: mainTheme.white,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingVertical: 50,
@@ -74,7 +73,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   text: {
-    color: 'grey',
+    color: mainTheme.white,
     marginTop: 5,
     alignSelf: 'center'
   },
@@ -93,16 +92,17 @@ export default StyleSheet.create({
     height: 40,
     marginTop: 10,
     borderRadius: 5,
-    borderColor: mainTheme.secondary,
-    borderWidth: 1,
+    borderColor: mainTheme.primary,
+    borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    color: mainTheme.secondary
+    color: mainTheme.white
   },
   textSign: {
-    color: 'white',
+    color: mainTheme.white,
+    fontSize: 18,
     fontWeight: 'bold',
-    marginRight: 5
+    marginRight: 15
   },
   errorMessage: {
     color: mainTheme.error,
@@ -134,7 +134,7 @@ export default StyleSheet.create({
     color: '#FFBFCC'
   },
   darkIcon: {
-    backgroundColor: mainTheme.darkBackground,
+    backgroundColor: mainTheme.background,
     color: mainTheme.accent
   },
   lightBottomBar: {
@@ -145,13 +145,9 @@ export default StyleSheet.create({
     backgroundColor: mainTheme.primary,
     color: mainTheme.accent
   },
-  darkBackground: {
-    backgroundColor: mainTheme.primary,
-    color: mainTheme.lightText
-  },
   label: {
     fontSize: 18,
-    color: mainTheme.secondary
+    color: mainTheme.white
   },
   action: {
     flexDirection: 'row',
