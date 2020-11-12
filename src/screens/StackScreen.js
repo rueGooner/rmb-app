@@ -24,7 +24,7 @@ function HomeStackScreen({ navigation}) {
   return (
     <HomeStack.Navigator screenOptions={screenStyles}>
       <HomeStack.Screen
-        name="Home"
+        name="Dashboard"
         component={HomeScreen}
         options={{
           headerRight: () => (
@@ -50,6 +50,11 @@ function ProfileStackScreen({ navigation }) {
         name="Profile"
         component={ProfileScreen}
         options={{
+          headerLeft: () => (
+            <SearchBar placeholder="Type Here..."
+            onChangeText={this.updateSearch}
+            value={search}/>
+          ),
           headerRight: () => (
             <Icon.Button
               name='menu'

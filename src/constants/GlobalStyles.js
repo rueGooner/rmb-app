@@ -55,6 +55,21 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  searchContainer: {
+    backgroundColor: '#FBFBFB',
+    borderBottomColor: 'transparent',
+    borderTopColor: 'transparent',
+    borderRadius: 10
+  },
+  inputContainer: {
+    borderWidth: 0,
+    backgroundColor: 'transparent',
+    height: 30
+  },
+  inputStyle: {
+    backgroundColor: mainTheme.white,
+    borderWidth: 0
+  },
   footer: {
     flex: 2,
     width: '95%',
