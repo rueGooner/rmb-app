@@ -50,11 +50,6 @@ function ProfileStackScreen({ navigation }) {
         name="Profile"
         component={ProfileScreen}
         options={{
-          headerLeft: () => (
-            <SearchBar placeholder="Type Here..."
-            onChangeText={this.updateSearch}
-            value={search}/>
-          ),
           headerRight: () => (
             <Icon.Button
               name='menu'

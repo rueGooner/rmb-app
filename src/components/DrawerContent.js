@@ -23,6 +23,8 @@ export function DrawerContent(props) {
     setIsDarkTheme(!isDarkTheme);
   };
 
+  console.log('LOGGING IN DRAWER CONTENT');
+
   const { signOut } = useContext(AuthContext)
   return (
     <View style={styles.drawerContainer}>

@@ -4,7 +4,6 @@ import {
   ActivityIndicator,
   Text,
   Alert,
-  AsyncStorage,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -12,6 +11,7 @@ import MainTabScreen from './src/screens/StackScreen';
 import NotificationStackScreen from './src/screens/NotificationsScreen';
 import ReviewsScreen from './src/screens/ReviewsScreen';
 import AuthStackScreen from './src/screens/AuthStackScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { AuthContext } from './src/components/Context';
 
@@ -27,6 +27,8 @@ function App() {
     user: '',
     userToken: null,
   };
+
+  console.log('LOGGING INSIDE APP');
 
   const loginReducer = (previousState, action) => {
     switch (action.type) {
@@ -66,7 +68,7 @@ function App() {
     () => ({
       login: async (authUser) => {
         try {
-          console.log(authUser);
+          console.log('PROPS');
           await AsyncStorage.setItem('rmb-token', authUser.data.token);
           dispatch({
             type: 'LOGIN',
